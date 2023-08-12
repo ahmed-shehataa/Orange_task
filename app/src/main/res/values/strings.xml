@@ -3,4 +3,6 @@
     <string name="no_articles_found">No articles found</string>
     <string name="network_error">Network Error</string>
     <string name="retry">Retry</string>
+    <string name="news">News</string>
+    <string name="search_text">ex: apple</string>
 </resources>
