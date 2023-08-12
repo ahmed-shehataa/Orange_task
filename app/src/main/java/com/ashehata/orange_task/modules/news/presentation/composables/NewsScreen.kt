@@ -80,7 +80,7 @@ fun NewsScreen(
             }
 
             NewsState.OpenSettingScreen -> {
-
+                navController.navigate("settings")
             }
         }
     }
