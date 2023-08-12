@@ -1,5 +1,6 @@
 package com.ashehata.orange_task.modules.news.presentation.composables
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -9,6 +10,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
@@ -53,7 +55,8 @@ fun NewsScreenContent(
             floatingActionButton = {
                 NewsFabIcon(isScrollUpButtonVisible.value, allListState)
 
-            }
+            },
+            backgroundColor = MaterialTheme.colorScheme.onPrimary
         ) { _ ->
 
             if (isNetworkError) {

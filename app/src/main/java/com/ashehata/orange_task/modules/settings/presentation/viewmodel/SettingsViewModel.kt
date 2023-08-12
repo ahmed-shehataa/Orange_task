@@ -1,6 +1,5 @@
 package com.ashehata.orange_task.modules.settings.presentation.viewmodel
 
-import android.util.Log
 import com.ashehata.orange_task.base.BaseViewModel
 import com.ashehata.orange_task.modules.settings.domain.usecase.GetAppThemeFlowUseCase
 import com.ashehata.orange_task.modules.settings.domain.usecase.SetAppThemeUseCase
@@ -36,6 +35,16 @@ class SettingsViewModel @Inject constructor(
                 launchCoroutine {
                     setAppThemeUseCase.execute(event.appTheme)
                 }
+            }
+
+            SettingsEvent.OnLanguageClicked -> {
+                viewStates?.isLanguageExpanded?.value =
+                    viewStates?.isLanguageExpanded?.value?.not() ?: false
+            }
+
+            SettingsEvent.OnThemeClicked -> {
+                viewStates?.isThemeExpanded?.value =
+                    viewStates?.isThemeExpanded?.value?.not() ?: false
             }
         }
     }
