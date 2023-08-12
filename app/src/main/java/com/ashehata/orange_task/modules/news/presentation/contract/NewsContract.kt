@@ -24,5 +24,6 @@ data class NewsViewState(
     override val isNetworkError: MutableState<Boolean> = mutableStateOf(false),
     override val isRefreshing: MutableState<Boolean> = mutableStateOf(false),
     override val isLoading: MutableState<Boolean> = mutableStateOf(false),
+    val searchText: MutableState<String> = mutableStateOf(""),
     val allNews: MutableList<NewsUIModel?> = SnapshotStateList(),
 ) : BaseViewState

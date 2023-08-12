@@ -32,6 +32,10 @@ fun NewsScreen(
         viewStates.isLoading
     }
 
+    val searchText = remember {
+        viewStates.searchText
+    }
+
     val isRefreshing = remember {
         viewStates.isRefreshing
     }
@@ -65,7 +69,8 @@ fun NewsScreen(
         allNews = allNews,
         onArticleClicked = onArticleClicked,
         onRefresh = onRefresh,
-        onSettingsClicked = onSettingsClicked
+        onSettingsClicked = onSettingsClicked,
+        searchText = searchText
     )
 
     GeneralObservers<NewsState, NewsViewModel>(viewModel = viewModel) {

@@ -24,7 +24,6 @@ class HomeActivity : ComponentActivity() {
                 setContent {
                     val viewModel: NewsViewModel by viewModels()
                     NewsScreen(viewModel = viewModel, navController = navController)
-
                 }
             }
         }
