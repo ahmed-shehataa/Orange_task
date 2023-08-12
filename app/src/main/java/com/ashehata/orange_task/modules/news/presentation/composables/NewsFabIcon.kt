@@ -5,6 +5,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -29,6 +30,7 @@ fun NewsFabIcon(isScrollUpButtonVisible: Boolean, allListState: LazyListState) {
                     allListState.animateScrollToItem(0)
                 }
             },
+            shape = CircleShape
         ) {
             Icon(
                 imageVector = Icons.Filled.KeyboardArrowUp,

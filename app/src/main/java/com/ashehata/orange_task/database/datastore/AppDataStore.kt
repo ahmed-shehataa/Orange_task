@@ -1,6 +1,7 @@
 package com.ashehata.orange_task.database.datastore
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -29,12 +30,14 @@ class AppDataStore @Inject constructor(private val context: Context) {
 
     suspend fun setTheme(theme: AppTheme) {
         context.dataStore.edit { settings ->
+            Log.i("setTheme: ", theme.name)
             settings[appTheme] = theme.toStringTheme()
         }
     }
 
-    suspend fun getThemeFlow(): Flow<AppTheme> {
+    fun getThemeFlow(): Flow<AppTheme> {
         return context.dataStore.data.map { preferences ->
+            Log.i("getThemeFlow: ", preferences[appTheme]?.toAppTheme()?.name.toString())
             preferences[appTheme]?.toAppTheme() ?: AppTheme.SYSTEM
         }
     }

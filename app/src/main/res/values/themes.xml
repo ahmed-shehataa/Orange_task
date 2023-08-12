@@ -1,4 +1,3 @@
 <resources>
-
     <style name="Theme.Orange_task" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
