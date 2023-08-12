@@ -14,6 +14,7 @@ class Query {
         const val PER_PAGE = "perpage"
         const val COMPANY = "q"
         const val SORTED_BY = "sortBy"
+        const val API_KEY = "apiKey"
     }
 
 }

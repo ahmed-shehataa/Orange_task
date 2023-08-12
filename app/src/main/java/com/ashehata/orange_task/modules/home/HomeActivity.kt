@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
+import com.ashehata.orange_task.modules.articles.presentation.composables.ArticlesScreen
+import com.ashehata.orange_task.modules.articles.presentation.viewmodel.ArticlesViewModel
 import com.ashehata.orange_task.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +22,8 @@ class HomeActivity : ComponentActivity() {
 
             AppTheme {
                 setContent {
+                    val viewModel: ArticlesViewModel by viewModels()
+                    ArticlesScreen(viewModel = viewModel, navController = navController)
 
                 }
             }
