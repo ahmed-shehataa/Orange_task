@@ -25,23 +25,25 @@ fun NewsDetailsItem(
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp)
-
+        modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text(
-            stringResource(id = title) + ": ",
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
-        )
+        Column {
+            Text(
+                stringResource(id = title) + ": ",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
 
-        Text(
-            description,
-            overflow = TextOverflow.Ellipsis,
-            fontSize = 16.sp,
-        )
+            Text(
+                description,
+                overflow = TextOverflow.Ellipsis,
+                fontSize = 16.sp,
+            )
+        }
 
         if (hasDivider)
             Divider(
