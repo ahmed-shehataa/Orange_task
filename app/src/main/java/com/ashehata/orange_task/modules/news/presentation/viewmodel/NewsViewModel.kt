@@ -32,7 +32,7 @@ class NewsViewModel @Inject constructor(
         when (event) {
             is NewsEvent.OnArticleClicked -> {
                 setState {
-                    NewsState.OpenArticleDetailsScreen(event.article)
+                    NewsState.OpenArticleDetailsScreen(event.news)
                 }
             }
 

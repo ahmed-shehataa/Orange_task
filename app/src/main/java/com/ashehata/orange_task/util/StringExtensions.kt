@@ -1,12 +1,15 @@
 package com.ashehata.orange_task.util
 
+import androidx.compose.runtime.Composable
 
-fun String?.doIf(call: (String) -> Unit) {
+
+@Composable
+fun String?.DoIf(call: @Composable (String) -> Unit) {
     if (this.isNullOrEmpty().not())
         call(this ?: "")
 }
 
-fun List<String?>?.doIf(call: (List<String?>) -> Unit) {
+fun String?.doIf(call: (String) -> Unit) {
     if (this.isNullOrEmpty().not())
-        call(this ?: emptyList())
+        call(this ?: "")
 }

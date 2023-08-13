@@ -1,5 +1,6 @@
 package com.ashehata.orange_task.modules.news.presentation.composables
 
+import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -10,7 +11,7 @@ import com.ashehata.orange_task.modules.news.presentation.contract.NewsState
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsViewState
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 import com.ashehata.orange_task.modules.news.presentation.viewmodel.NewsViewModel
-
+import com.ashehata.orange_task.util.navigate
 
 @Composable
 fun NewsScreen(
@@ -76,7 +77,9 @@ fun NewsScreen(
     GeneralObservers<NewsState, NewsViewModel>(viewModel = viewModel) {
         when (it) {
             is NewsState.OpenArticleDetailsScreen -> {
-
+                navController.navigate(route = "news_details/news", args = Bundle().apply {
+                    putParcelable("news", it.news)
+                })
             }
 
             NewsState.OpenSettingScreen -> {
