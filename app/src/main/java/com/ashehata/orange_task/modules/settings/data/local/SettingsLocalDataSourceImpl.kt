@@ -17,12 +17,11 @@ class SettingsLocalDataSourceImpl @Inject constructor(
         appDataStore.setTheme(appTheme)
     }
 
-    override suspend fun getLocal(): AppLocal {
-        // TODO
-        return AppLocal.AR
+    override suspend fun getLocal(): Flow<AppLocal> {
+        return appDataStore.getLocalFlow()
     }
 
     override suspend fun setLocal(appLocal: AppLocal) {
-        // TODO
+        appDataStore.setLocal(appLocal)
     }
 }

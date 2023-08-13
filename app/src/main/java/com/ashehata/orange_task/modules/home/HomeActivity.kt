@@ -30,9 +30,10 @@ class HomeActivity : ComponentActivity() {
             val navController = rememberNavController()
             val viewStates = remember { settingsViewModel.viewStates ?: SettingsViewState() }
             val appTheme = remember { viewStates.appTheme }
-            Log.i("setContent: ", appTheme.value.name)
+            val appLocal = remember { viewStates.appLocal }
+            Log.i("setContent: ", appLocal.value.name)
 
-            AppTheme(appTheme.value) {
+            AppTheme(appTheme.value, appLocal.value) {
                 NavHost(navController = navController, startDestination = "news") {
                     composable("news") {
                         val viewModel: NewsViewModel by viewModels()

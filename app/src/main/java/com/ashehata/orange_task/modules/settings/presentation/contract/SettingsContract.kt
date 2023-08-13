@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 sealed class SettingsEvent : BaseEvent {
     data class ChangeTheme(val appTheme: AppTheme) : SettingsEvent()
     data class ChangeLocal(val appLocal: AppLocal) : SettingsEvent()
+
+    object OnLanguageClicked  : SettingsEvent()
+    object OnThemeClicked  : SettingsEvent()
 }
 
 sealed class SettingsState : BaseState {
@@ -23,4 +26,7 @@ data class SettingsViewState(
     override val isRefreshing: MutableState<Boolean> = mutableStateOf(false),
     override val isLoading: MutableState<Boolean> = mutableStateOf(false),
     val appTheme: MutableState<AppTheme> = mutableStateOf(AppTheme.SYSTEM),
+    val appLocal: MutableState<AppLocal> = mutableStateOf(AppLocal.EN),
+    val isLanguageExpanded: MutableState<Boolean> = mutableStateOf(false),
+    val isThemeExpanded: MutableState<Boolean> = mutableStateOf(false),
 ) : BaseViewState

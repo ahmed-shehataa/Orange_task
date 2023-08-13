@@ -10,7 +10,7 @@ interface SettingsLocalDataSource {
 
     suspend fun setTheme(appTheme: AppTheme)
 
-    suspend fun getLocal(): AppLocal
+    suspend fun getLocal(): Flow<AppLocal>
 
     suspend fun setLocal(appLocal: AppLocal)
 }

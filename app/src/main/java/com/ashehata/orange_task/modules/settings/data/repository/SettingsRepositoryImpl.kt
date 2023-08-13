@@ -18,9 +18,10 @@ class SettingsRepositoryImpl @Inject constructor(
         local.setTheme(appTheme)
     }
 
-    override suspend fun getLocal(): AppLocal {
+    override suspend fun getLocal(): Flow<AppLocal> {
         return local.getLocal()
     }
+
 
     override suspend fun setLocal(appLocal: AppLocal) {
         local.setLocal(appLocal)

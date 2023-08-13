@@ -1,12 +1,10 @@
 package com.ashehata.orange_task.modules.settings.presentation.composables
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import com.ashehata.orange_task.database.models.AppLocal
 import com.ashehata.orange_task.database.models.AppTheme
 import com.ashehata.orange_task.modules.settings.presentation.contract.SettingsEvent
 import com.ashehata.orange_task.modules.settings.presentation.contract.SettingsViewState
@@ -25,41 +23,62 @@ fun SettingsScreen(
         viewModel.viewStates ?: SettingsViewState()
     }
 
-    Column {
-        Button(onClick = {
-            viewModel.setEvent(SettingsEvent.ChangeTheme(AppTheme.DARK))
-        }) {
-            Text(text = "Dark")
-        }
+    val languageExpandedState = remember {
+        viewStates.isLanguageExpanded
+    }
 
-        Button(onClick = {
-            viewModel.setEvent(SettingsEvent.ChangeTheme(AppTheme.LIGHT))
-        }) {
-            Text(text = "Light")
-        }
+    val themeExpandedState = remember {
+        viewStates.isThemeExpanded
+    }
 
-        Button(onClick = {
-            viewModel.setEvent(SettingsEvent.ChangeTheme(AppTheme.SYSTEM))
-        }) {
-            Text(text = "SYSTEM")
+    val appTheme = remember {
+        viewStates.appTheme
+    }
+
+    val appLocal = remember {
+        viewStates.appLocal
+    }
+
+    val onChangeTheme: (AppTheme) -> Unit = remember {
+        {
+            viewModel.setEvent(SettingsEvent.ChangeTheme(it))
+
         }
     }
 
+    val onChangeLocal: (AppLocal) -> Unit = remember {
+        {
+            viewModel.setEvent(SettingsEvent.ChangeLocal(it))
 
-    /*SettingsScreenContent(
-
-    )
-
-    GeneralObservers<SettingsState, SettingsViewModel>(viewModel = viewModel) {
-        when (it) {
-            is SettingsState.OpenArticleDetailsScreen -> {
-
-            }
-
-            SettingsState.OpenSettingScreen -> {
-
-            }
         }
-    }*/
+    }
+
+    val onLanguageClicked = remember {
+        {
+            viewModel.setEvent(SettingsEvent.OnLanguageClicked)
+
+        }
+    }
+
+    val onThemeClicked = remember {
+        {
+            viewModel.setEvent(SettingsEvent.OnThemeClicked)
+
+        }
+    }
+
+    SettingsScreenContent(
+        onBackClicked = {
+            navController.navigateUp()
+        },
+        onLanguageClicked = onLanguageClicked,
+        onThemeClicked = onThemeClicked,
+        languageExpandedState = languageExpandedState,
+        themeExpandedState = themeExpandedState,
+        currentAppTheme = appTheme.value,
+        onChangeTheme = onChangeTheme,
+        onChangeLocal = onChangeLocal,
+        currentAppLocal = appLocal.value
+    )
 
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_articles_found">No articles found</string>
+    <string name="network_error">خطأ في الانترنت</string>
+    <string name="retry">حاول</string>
+    <string name="news">الأخبار</string>
+    <string name="search_text">مثال: أبل</string>
+    <string name="settings">الأعدادات</string>
+    <string name="language">اللغة</string>
+    <string name="theme">الثيم</string></resources>

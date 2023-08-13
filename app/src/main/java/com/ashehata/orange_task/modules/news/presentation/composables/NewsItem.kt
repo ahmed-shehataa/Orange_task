@@ -57,7 +57,7 @@ fun NewsItem(
         Text(
             text = article?.title ?: "",
             style = MaterialTheme.typography.body1.copy(
-                color = MaterialTheme.colors.onSecondary
+                color = MaterialTheme.colors.secondary
             ),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis

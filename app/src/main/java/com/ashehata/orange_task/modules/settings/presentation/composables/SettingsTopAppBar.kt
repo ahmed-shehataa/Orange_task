@@ -1,9 +1,10 @@
-package com.ashehata.orange_task.modules.news.presentation.composables
+package com.ashehata.orange_task.modules.settings.presentation.composables
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,29 +18,27 @@ import com.ashehata.orange_task.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewsTopAppBar(onSettingsClicked: () -> Unit) {
+fun SettingsTopAppBar(onBackClicked: () -> Unit) {
     CenterAlignedTopAppBar(
         title = {
             Text(
-                stringResource(id = R.string.news),
+                stringResource(id = R.string.settings),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.primaryContainer
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
-        actions = {
-
+        navigationIcon = {
             IconButton(onClick = {
-                onSettingsClicked()
+                onBackClicked()
             }) {
                 Icon(
-                    imageVector = Icons.Filled.Settings,
-                    contentDescription = "Settings",
-                    tint = MaterialTheme.colorScheme.primaryContainer
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "ArrowBack",
                 )
             }
+
         },
     )
 }
