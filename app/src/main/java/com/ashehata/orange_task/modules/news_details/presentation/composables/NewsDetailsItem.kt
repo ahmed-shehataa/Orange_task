@@ -3,6 +3,7 @@ package com.ashehata.orange_task.modules.news_details.presentation.composables
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
@@ -21,35 +22,42 @@ import androidx.compose.ui.unit.sp
 fun NewsDetailsItem(
     @StringRes title: Int,
     description: String,
-    hasDivider: Boolean = true
+    hasDivider: Boolean = true,
+    extraBody: @Composable () -> Unit = {}
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Row {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 20.dp, vertical = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-        Column {
             Text(
                 stringResource(id = title) + ": ",
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 18.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.fillMaxWidth()
             )
 
             Text(
                 description,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 16.sp,
+                modifier = Modifier.fillMaxWidth()
             )
+
+            if (hasDivider)
+                Divider(
+                    modifier = Modifier.fillMaxWidth(0.5f),
+                    color = MaterialTheme.colorScheme.secondary
+                )
         }
 
-        if (hasDivider)
-            Divider(
-                modifier = Modifier.fillMaxWidth(0.5f),
-                color = MaterialTheme.colorScheme.secondary
-            )
+        extraBody()
     }
 
 }

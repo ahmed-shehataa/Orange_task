@@ -6,7 +6,6 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -136,14 +135,14 @@ fun NewsDetailsScreenContent(
 
                     news.source?.name?.doIf {
                         item {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                NewsDetailsItem(
-                                    title = R.string.source,
-                                    description = it,
-                                    hasDivider = false
-                                )
-                                SourceButton(Modifier, news.url, onOpenSourceClicked)
-                            }
+                            NewsDetailsItem(
+                                title = R.string.source,
+                                description = it,
+                                hasDivider = false,
+                                extraBody = {
+                                    SourceButton(Modifier, news.url, onOpenSourceClicked)
+                                }
+                            )
                         }
                     }
                 }
