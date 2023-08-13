@@ -35,6 +35,10 @@ fun SettingsScreen(
         viewStates.appTheme
     }
 
+    val appLocal = remember {
+        viewStates.appLocal
+    }
+
     val onChangeTheme: (AppTheme) -> Unit = remember {
         {
             viewModel.setEvent(SettingsEvent.ChangeTheme(it))
@@ -71,20 +75,10 @@ fun SettingsScreen(
         onThemeClicked = onThemeClicked,
         languageExpandedState = languageExpandedState,
         themeExpandedState = themeExpandedState,
-        appTheme = appTheme.value,
+        currentAppTheme = appTheme.value,
         onChangeTheme = onChangeTheme,
+        onChangeLocal = onChangeLocal,
+        currentAppLocal = appLocal.value
     )
-
-    /* GeneralObservers<SettingsState, SettingsViewModel>(viewModel = viewModel) {
-         when (it) {
-             is SettingsState.OpenArticleDetailsScreen -> {
-
-             }
-
-             SettingsState.OpenSettingScreen -> {
-
-             }
-         }
-     }*/
 
 }

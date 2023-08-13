@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Orange_task</string>
+    <string name="app_name" translatable="false">Orange_task</string>
     <string name="no_articles_found">No articles found</string>
     <string name="network_error">Network Error</string>
     <string name="retry">Retry</string>
