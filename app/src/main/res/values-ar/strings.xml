@@ -7,4 +7,10 @@
     <string name="search_text">مثال: أبل</string>
     <string name="settings">الأعدادات</string>
     <string name="language">اللغة</string>
-    <string name="theme">الثيم</string></resources>
+    <string name="theme">الثيم</string>
+    <string name="author">Author</string>
+    <string name="description">Description</string>
+    <string name="content">Content</string>
+    <string name="source">Source</string>
+    <string name="open_source">Open source</string>
+</resources>

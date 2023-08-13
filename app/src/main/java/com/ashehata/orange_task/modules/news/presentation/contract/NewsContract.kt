@@ -9,13 +9,13 @@ import com.ashehata.orange_task.base.BaseViewState
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 
 sealed class NewsEvent : BaseEvent {
-    data class OnArticleClicked(val article: NewsUIModel) : NewsEvent()
+    data class OnArticleClicked(val news: NewsUIModel) : NewsEvent()
     object OnSettingClicked : NewsEvent()
     object RefreshScreen : NewsEvent()
 }
 
 sealed class NewsState : BaseState {
-    data class OpenArticleDetailsScreen(val article: NewsUIModel) : NewsState()
+    data class OpenArticleDetailsScreen(val news: NewsUIModel) : NewsState()
     object OpenSettingScreen : NewsState()
 
 }
