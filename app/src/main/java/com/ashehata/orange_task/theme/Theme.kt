@@ -30,40 +30,45 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun AppTheme(
-    appTheme: AppTheme = AppTheme.SYSTEM,
+    appTheme: AppTheme? = AppTheme.SYSTEM,
     appLocal: AppLocal = AppLocal.EN,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = !isSystemInDarkTheme()
-    val colorScheme = when (appTheme) {
-        AppTheme.SYSTEM -> {
-            if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
+
+    appTheme?.let {
+
+        val colorScheme = when (appTheme) {
+            AppTheme.SYSTEM -> {
+                if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
+            }
+            AppTheme.LIGHT -> LightColorScheme
+            AppTheme.DARK -> DarkColorScheme
         }
-        AppTheme.LIGHT -> LightColorScheme
-        AppTheme.DARK -> DarkColorScheme
+
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            shapes = Shapes,
+            content = {
+                // Control the status bar color
+                val primaryColor = MaterialTheme.colorScheme.primary
+                DisposableEffect(systemUiController, useDarkIcons, colorScheme) {
+                    systemUiController.setStatusBarColor(color = primaryColor)
+                    onDispose {}
+                }
+
+                LaunchedEffect(key1 = appLocal) {
+                    context.changeLocal(appLocal)
+                }
+
+                content()
+            }
+        )
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        shapes = Shapes,
-        content = {
-            // Control the status bar color
-            val primaryColor = MaterialTheme.colorScheme.primary
-            DisposableEffect(systemUiController, useDarkIcons, colorScheme) {
-                systemUiController.setStatusBarColor(color = primaryColor)
-                onDispose {}
-            }
-
-            LaunchedEffect(key1 = appLocal) {
-                context.changeLocal(appLocal)
-            }
-
-            content()
-        }
-    )
 }
 
 private fun Context.changeLocal(appLocal: AppLocal) {
