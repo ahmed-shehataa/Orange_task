@@ -27,7 +27,7 @@ fun SourceButton(modifier: Modifier, url: String?, onOpenSourceClicked: (String)
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.primaryContainer
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }

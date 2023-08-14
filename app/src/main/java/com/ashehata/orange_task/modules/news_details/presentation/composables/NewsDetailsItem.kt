@@ -53,7 +53,7 @@ fun NewsDetailsItem(
             if (hasDivider)
                 Divider(
                     modifier = Modifier.fillMaxWidth(0.5f),
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.primary
                 )
         }
 

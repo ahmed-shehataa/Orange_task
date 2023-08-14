@@ -26,6 +26,7 @@ fun SettingsTopAppBar(onBackClicked: () -> Unit) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onSurface
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
@@ -36,6 +37,7 @@ fun SettingsTopAppBar(onBackClicked: () -> Unit) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "ArrowBack",
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
 

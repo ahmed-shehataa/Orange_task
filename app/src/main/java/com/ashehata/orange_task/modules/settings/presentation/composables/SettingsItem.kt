@@ -46,7 +46,7 @@ fun SettingsItem(
                 }
                 .padding(
                     horizontal = 20.dp,
-                    vertical = 8.dp
+                    vertical = 20.dp
                 ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -56,6 +56,7 @@ fun SettingsItem(
                 modifier = Modifier.size(26.dp),
                 imageVector = ImageVector.vectorResource(id = iconRes),
                 contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
             )
 
             Text(

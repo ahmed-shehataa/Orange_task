@@ -25,7 +25,7 @@ fun NewsTopAppBar(onSettingsClicked: () -> Unit) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.primaryContainer
+                color = MaterialTheme.colorScheme.onSurface
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary),
@@ -37,7 +37,7 @@ fun NewsTopAppBar(onSettingsClicked: () -> Unit) {
                 Icon(
                     imageVector = Icons.Filled.Settings,
                     contentDescription = "Settings",
-                    tint = MaterialTheme.colorScheme.primaryContainer
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         },
