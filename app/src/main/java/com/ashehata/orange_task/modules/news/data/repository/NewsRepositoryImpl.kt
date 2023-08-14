@@ -11,8 +11,8 @@ class NewsRepositoryImpl @Inject constructor(
 ) : NewsRepository {
 
 
-    override suspend fun getArticles(page: Int, perPage: Int): List<NewsDomainModel> {
-        return remote.getArticles(page, perPage).map { it.toDomainModel() }
+    override suspend fun getNews(page: Int, perPage: Int, keyword: String): List<NewsDomainModel> {
+        return remote.getNews(page, perPage, keyword).map { it.toDomainModel() }
     }
 
 

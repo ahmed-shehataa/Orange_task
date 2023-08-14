@@ -10,6 +10,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
@@ -30,11 +31,13 @@ fun NewsFabIcon(isScrollUpButtonVisible: Boolean, allListState: LazyListState) {
                     allListState.animateScrollToItem(0)
                 }
             },
-            shape = CircleShape
+            shape = CircleShape,
+            containerColor = MaterialTheme.colorScheme.secondary
         ) {
             Icon(
                 imageVector = Icons.Filled.KeyboardArrowUp,
                 contentDescription = "ArrowForward",
+                tint = MaterialTheme.colorScheme.onSurface
             )
         }
     }

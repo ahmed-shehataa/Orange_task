@@ -18,13 +18,14 @@ import java.util.Locale
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
-    primaryContainer = md_theme_light_primaryContainer,
+    secondary = md_theme_light_secondary,
+    onSurface = White
 )
 private val DarkColorScheme = darkColorScheme(
     primary = md_theme_dark_primary,
     onPrimary = md_theme_dark_onPrimary,
-    primaryContainer = md_theme_dark_primaryContainer,
-    secondary = md_theme_dark_secondary
+    secondary = md_theme_dark_secondary,
+    onSurface = White
 )
 
 @Composable
