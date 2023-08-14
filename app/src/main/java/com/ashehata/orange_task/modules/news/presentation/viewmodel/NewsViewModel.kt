@@ -52,7 +52,11 @@ class NewsViewModel @Inject constructor(
             }
 
             NewsEvent.RefreshScreen -> {
-                getAllNews()
+                val searchKeyword = viewStates?.searchText?.value?.trim()
+                if (searchKeyword.isNullOrEmpty())
+                    getAllNews()
+                else
+                    getAllNews(searchKeyword)
             }
 
             is NewsEvent.OnSearch -> {
