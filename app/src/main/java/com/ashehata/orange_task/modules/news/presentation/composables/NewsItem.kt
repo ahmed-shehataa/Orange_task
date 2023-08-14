@@ -17,10 +17,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.ashehata.orange_task.R
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 
 @Composable
@@ -45,13 +47,14 @@ fun NewsItem(
         AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp),
+                .height(200.dp),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(article?.urlToImage)
                 .crossfade(true)
                 .build(),
             contentDescription = null,
             contentScale = ContentScale.Crop,
+            error = painterResource(R.drawable.img_placeholder)
         )
 
         Text(
