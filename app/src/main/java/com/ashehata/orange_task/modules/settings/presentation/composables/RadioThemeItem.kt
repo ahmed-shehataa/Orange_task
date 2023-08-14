@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.ashehata.orange_task.database.models.AppTheme
 
 @Composable
-fun RadioThemeItem(appTheme: AppTheme, currentAppTheme: AppTheme, onChangeTheme: (AppTheme) -> Unit) {
+fun RadioThemeItem(appTheme: AppTheme, currentAppTheme: AppTheme?, onChangeTheme: (AppTheme) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

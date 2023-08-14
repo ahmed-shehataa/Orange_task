@@ -17,7 +17,7 @@ fun SettingsScreenContent(
     onThemeClicked: () -> Unit,
     languageExpandedState: MutableState<Boolean>,
     themeExpandedState: MutableState<Boolean>,
-    currentAppTheme: AppTheme,
+    currentAppTheme: AppTheme?,
     currentAppLocal: AppLocal,
     onChangeTheme: (AppTheme) -> Unit,
     onChangeLocal: (AppLocal) -> Unit,

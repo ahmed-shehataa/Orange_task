@@ -25,7 +25,7 @@ data class SettingsViewState(
     override val isNetworkError: MutableState<Boolean> = mutableStateOf(false),
     override val isRefreshing: MutableState<Boolean> = mutableStateOf(false),
     override val isLoading: MutableState<Boolean> = mutableStateOf(false),
-    val appTheme: MutableState<AppTheme> = mutableStateOf(AppTheme.SYSTEM),
+    val appTheme: MutableState<AppTheme?> = mutableStateOf(null),
     val appLocal: MutableState<AppLocal> = mutableStateOf(AppLocal.EN),
     val isLanguageExpanded: MutableState<Boolean> = mutableStateOf(false),
     val isThemeExpanded: MutableState<Boolean> = mutableStateOf(false),
