@@ -4,5 +4,5 @@ import com.ashehata.orange_task.modules.news.data.model.NewsDataModel
 
 interface NewsRemoteDataSource {
 
-    suspend fun getArticles(page: Int, perPage: Int): List<NewsDataModel>
+    suspend fun getNews(page: Int, perPage: Int, keyword: String): List<NewsDataModel>
 }

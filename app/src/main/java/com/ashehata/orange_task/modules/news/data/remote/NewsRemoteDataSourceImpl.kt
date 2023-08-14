@@ -8,7 +8,7 @@ class NewsRemoteDataSourceImpl @Inject constructor(
     private val service: NewsService
 ) : NewsRemoteDataSource {
 
-    override suspend fun getArticles(page: Int, perPage: Int): List<NewsDataModel> {
-        return service.getArticles(page, perPage).articles ?: emptyList()
+    override suspend fun getNews(page: Int, perPage: Int, keyword: String): List<NewsDataModel> {
+        return service.getNews(page, perPage, keyword).articles ?: emptyList()
     }
 }

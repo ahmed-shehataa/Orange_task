@@ -1,6 +1,5 @@
 package com.ashehata.orange_task.modules.news.presentation.composables
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -35,6 +34,7 @@ fun NewsScreenContent(
     onRefresh: () -> Unit,
     onSettingsClicked: () -> Unit,
     searchText: MutableState<String>,
+    onSearch: (String) -> Unit,
 ) {
 
     val refreshState = rememberPullRefreshState(isRefreshing, onRefresh)
@@ -59,34 +59,33 @@ fun NewsScreenContent(
             backgroundColor = MaterialTheme.colorScheme.onPrimary
         ) { _ ->
 
-            if (isNetworkError) {
-                NetworkErrorView(onRefresh)
+            Column {
 
-            } else if (isLoading) {
-                LoadingView()
+                NewsSearchBar(searchText, onSearch)
 
-            } else {
+                if (isNetworkError) {
+                    NetworkErrorView(onRefresh)
 
-                Box(Modifier.pullRefresh(refreshState)) {
+                } else if (isLoading) {
+                    LoadingView()
 
-                    Column {
+                } else {
 
-                        NewsSearchBar(searchText)
+                    Box(Modifier.pullRefresh(refreshState)) {
 
                         AllNewsList(
                             allListState, allNews, onArticleClicked
                         )
 
+                        PullRefreshIndicator(
+                            isRefreshing,
+                            refreshState,
+                            Modifier.align(Alignment.TopCenter)
+                        )
 
                     }
-                    PullRefreshIndicator(
-                        isRefreshing,
-                        refreshState,
-                        Modifier.align(Alignment.TopCenter)
-                    )
 
                 }
-
             }
 
         }

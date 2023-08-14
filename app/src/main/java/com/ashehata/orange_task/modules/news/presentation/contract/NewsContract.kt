@@ -10,6 +10,7 @@ import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 
 sealed class NewsEvent : BaseEvent {
     data class OnArticleClicked(val news: NewsUIModel) : NewsEvent()
+    data class OnSearch(val keyword: String) : NewsEvent()
     object OnSettingClicked : NewsEvent()
     object RefreshScreen : NewsEvent()
 }
@@ -26,4 +27,4 @@ data class NewsViewState(
     override val isLoading: MutableState<Boolean> = mutableStateOf(false),
     val searchText: MutableState<String> = mutableStateOf(""),
     val allNews: MutableList<NewsUIModel?> = SnapshotStateList(),
-) : BaseViewState
+    ) : BaseViewState

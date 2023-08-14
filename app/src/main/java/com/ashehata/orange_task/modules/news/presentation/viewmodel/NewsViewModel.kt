@@ -7,6 +7,8 @@ import com.ashehata.orange_task.modules.news.presentation.contract.NewsState
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsViewState
 import com.ashehata.orange_task.modules.news.presentation.mapper.toUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,16 +16,23 @@ class NewsViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase
 ) : BaseViewModel<NewsEvent, NewsViewState, NewsState>() {
 
+    /**
+     * For search feature
+     */
+    private val searchDelay = 500L
+    private var searchJob: Job? = null
 
     init {
         getAllNews()
     }
 
-    private fun getAllNews() {
+    private fun getAllNews(keyword: String = "apple") {
         launchCoroutine {
-            val news = getNewsUseCase.execute()
+            setLoading()
+            val news = getNewsUseCase.execute(keyword = keyword)
             viewStates?.allNews?.clear()
             val list = news.map { it.toUIModel() }
+            setDoneLoading()
             viewStates?.allNews?.addAll(list)
         }
     }
@@ -44,6 +53,19 @@ class NewsViewModel @Inject constructor(
 
             NewsEvent.RefreshScreen -> {
                 getAllNews()
+            }
+
+            is NewsEvent.OnSearch -> {
+                searchJob?.cancel()
+                val searchKeyword = event.keyword.trim()
+                if (searchKeyword.isEmpty()) {
+                    getAllNews()
+                } else {
+                    searchJob = launchCoroutine {
+                        delay(searchDelay)
+                        getAllNews(keyword = searchKeyword)
+                    }
+                }
             }
         }
     }

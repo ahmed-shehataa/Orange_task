@@ -51,6 +51,12 @@ fun NewsScreen(
         }
     }
 
+    val onSearch: (String) -> Unit = remember {
+        {
+            viewModel.setEvent(NewsEvent.OnSearch(it))
+        }
+    }
+
     val onSettingsClicked = remember {
         {
             viewModel.setEvent(NewsEvent.OnSettingClicked)
@@ -71,7 +77,8 @@ fun NewsScreen(
         onArticleClicked = onArticleClicked,
         onRefresh = onRefresh,
         onSettingsClicked = onSettingsClicked,
-        searchText = searchText
+        searchText = searchText,
+        onSearch = onSearch,
     )
 
     GeneralObservers<NewsState, NewsViewModel>(viewModel = viewModel) {
