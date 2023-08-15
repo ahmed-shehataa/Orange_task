@@ -16,8 +16,10 @@ class NewsPagingSource(
         return try {
             val page = params.key ?: 1
             Log.i("NewsPagingSource", "load_page: $page")
+
             val response =
                 getNewsUseCase.execute(page = page, keyword = keyword).map { it.toUIModel() }
+            Log.i("NewsPagingSource", response.isEmpty().toString())
 
             LoadResult.Page(
                 data = response,
@@ -25,6 +27,7 @@ class NewsPagingSource(
                 nextKey = if (response.isEmpty()) null else page.plus(1),
             )
         } catch (e: Exception) {
+            Log.e("NewsPagingSource", "Error loading page:", e)
             LoadResult.Error(e)
         }
     }
@@ -32,9 +35,7 @@ class NewsPagingSource(
     override fun getRefreshKey(state: PagingState<Int, NewsUIModel>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
-            val page = anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-            Log.i("NewsPagingSource", "getRefreshKey: $page")
-            return page
+            return anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 }
