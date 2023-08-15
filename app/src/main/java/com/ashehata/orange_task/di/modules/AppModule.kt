@@ -1,13 +1,17 @@
 package com.ashehata.orange_task.di.modules
 
 import android.app.Application
+import android.content.Context
+import androidx.room.Room
 import com.ashehata.orange_task.database.datastore.AppDataStore
+import com.ashehata.orange_task.database.room.AppDatabase
 import com.ashehata.orange_task.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -66,5 +70,14 @@ class AppModule {
         return AppDataStore(application)
     }
 
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            AppDatabase::class.java,
+            "Orange_db"
+        ).build()
+    }
 
 }
