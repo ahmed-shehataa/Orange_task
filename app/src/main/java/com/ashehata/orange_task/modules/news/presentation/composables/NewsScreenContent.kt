@@ -16,6 +16,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.paging.compose.LazyPagingItems
 import com.ashehata.orange_task.common.presentation.compose.LoadingView
 import com.ashehata.orange_task.common.presentation.compose.NetworkErrorView
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
@@ -26,7 +27,7 @@ import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 )
 @Composable
 fun NewsScreenContent(
-    allNews: List<NewsUIModel?>,
+    allNews: LazyPagingItems<NewsUIModel>?,
     isLoading: Boolean,
     isRefreshing: Boolean,
     isNetworkError: Boolean,

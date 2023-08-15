@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,9 +36,9 @@ fun EmptyListPlaceholder(modifier: Modifier) {
             )
 
             Text(
-                text = stringResource(id = R.string.no_articles_found),
-                style = MaterialTheme.typography.body1.copy(
-                    color = MaterialTheme.colors.onSecondary
+                text = stringResource(id = R.string.no_news_found),
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    color = MaterialTheme.colorScheme.secondary
                 )
             )
 
