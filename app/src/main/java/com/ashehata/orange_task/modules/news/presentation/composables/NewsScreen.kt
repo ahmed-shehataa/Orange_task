@@ -1,10 +1,13 @@
 package com.ashehata.orange_task.modules.news.presentation.composables
 
 import android.os.Bundle
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
+import androidx.paging.PagingData
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.ashehata.orange_task.common.presentation.GeneralObservers
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsEvent
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsState
@@ -12,6 +15,8 @@ import com.ashehata.orange_task.modules.news.presentation.contract.NewsViewState
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 import com.ashehata.orange_task.modules.news.presentation.viewmodel.NewsViewModel
 import com.ashehata.orange_task.util.navigate
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.stateIn
 
 @Composable
 fun NewsScreen(
@@ -25,9 +30,8 @@ fun NewsScreen(
         viewModel.viewStates ?: NewsViewState()
     }
 
-    val allNews = remember {
-        viewStates.allNews
-    }
+    val allNews = (viewStates.newsFlow as Flow<PagingData<NewsUIModel>>).collectAsLazyPagingItems()
+
 
     val isLoading = remember {
         viewStates.isLoading

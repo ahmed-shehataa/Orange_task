@@ -1,39 +1,34 @@
 package com.ashehata.orange_task.modules.news.presentation.viewmodel
 
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.ashehata.orange_task.base.BaseViewModel
-import com.ashehata.orange_task.modules.news.domain.usecase.GetNewsUseCase
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsEvent
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsState
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsViewState
-import com.ashehata.orange_task.modules.news.presentation.mapper.toUIModel
+import com.ashehata.orange_task.modules.news.presentation.source.NewsPagingFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    private val getNewsUseCase: GetNewsUseCase
+    private val newsPagingFlow: NewsPagingFlow
 ) : BaseViewModel<NewsEvent, NewsViewState, NewsState>() {
 
-    /**
-     * For search feature
-     */
     private val searchDelay = 500L
     private var searchJob: Job? = null
+    private val firstLoadKeyword = "apple"
 
     init {
         getAllNews()
     }
 
-    private fun getAllNews(keyword: String = "apple") {
+    private fun getAllNews(keyword: String = firstLoadKeyword) {
         launchCoroutine {
-            setLoading()
-            val news = getNewsUseCase.execute(keyword = keyword)
-            viewStates?.allNews?.clear()
-            val list = news.map { it.toUIModel() }
-            setDoneLoading()
-            viewStates?.allNews?.addAll(list)
+            viewStates?.newsFlow?.emit(newsPagingFlow.getNewsFlow(keyword).cachedIn(viewModelScope).firstOrNull())
         }
     }
 
