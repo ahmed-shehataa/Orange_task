@@ -4,24 +4,52 @@ import com.ashehata.orange_task.modules.news.data.model.NewsDataModel
 import com.ashehata.orange_task.modules.news.data.retrofit.response.NewsResponse
 import com.ashehata.orange_task.modules.news.data.retrofit.service.NewsService
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
+import org.mockito.ArgumentMatchers.anyInt
+import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 
 class NewsRemoteDataSourceImplTest {
 
+    @get:Rule
+    var rule: MockitoRule = MockitoJUnit.rule()
+
+    @Mock
+    private lateinit var newsService: NewsService
+
+    private lateinit var newsRemoteDataSource: NewsRemoteDataSourceImpl
+
     private val newsList = List(20) { NewsDataModel(url = "dummy", title = "apple company") }
-    private val newsService: NewsService = Mockito.mock()
-    private val newsRemoteDataSourceImpl = NewsRemoteDataSourceImpl(newsService)
-    private val perPage = 20
+
+
+    @Before
+    fun setup() {
+        newsRemoteDataSource = NewsRemoteDataSourceImpl(newsService)
+    }
 
     @Test
     fun `getNews first page`() = runBlocking {
         val response =
             NewsResponse(articles = newsList, status = "success", totalResults = newsList.size)
 
-        Mockito.`when`(newsService.getNews(1, 20, "apple")).thenReturn(response)
-        val actual = newsRemoteDataSourceImpl.getNews(1, 20, "apple")
+        `when`(
+            newsService.getNews(
+                page = anyInt(),
+                perPage = anyInt(),
+                keyword = anyString(),
+                searchIn = anyString(),
+                sortBy = anyString(),
+                apiKey = anyString()
+            )
+        ).thenReturn(response)
+
+        val actual = newsRemoteDataSource.getNews(1, 20, "apple")
         assertEquals(newsList, actual)
     }
 
@@ -29,12 +57,26 @@ class NewsRemoteDataSourceImplTest {
     fun `getNews last page`() = runBlocking {
         val newsLastList = newsList.take(5)
         val currentPage = 20
+        val perPage = 20
         val keyword = "apple"
         val response =
-            NewsResponse(articles = newsLastList, status = "success", totalResults = newsLastList.size)
+            NewsResponse(
+                articles = newsLastList,
+                status = "success",
+                totalResults = newsLastList.size
+            )
 
-        Mockito.`when`(newsService.getNews(currentPage, perPage, keyword)).thenReturn(response)
-        val actual = newsRemoteDataSourceImpl.getNews(currentPage, perPage, keyword)
+        `when`(
+            newsService.getNews(
+                page = anyInt(),
+                perPage = anyInt(),
+                keyword = anyString(),
+                searchIn = anyString(),
+                sortBy = anyString(),
+                apiKey = anyString()
+            )
+        ).thenReturn(response)
+        val actual = newsRemoteDataSource.getNews(currentPage, perPage, keyword)
         assertEquals(newsLastList, actual)
     }
 
@@ -42,12 +84,23 @@ class NewsRemoteDataSourceImplTest {
     fun `getNews page with empty list`() = runBlocking {
         val newsLastList = emptyList<NewsDataModel>()
         val currentPage = 20
+        val perPage = 20
         val keyword = "apple"
         val response =
             NewsResponse(articles = newsLastList, status = "success", totalResults = 0)
 
-        Mockito.`when`(newsService.getNews(currentPage, perPage, keyword)).thenReturn(response)
-        val actual = newsRemoteDataSourceImpl.getNews(currentPage, perPage, keyword)
+        `when`(
+            newsService.getNews(
+                page = anyInt(),
+                perPage = anyInt(),
+                keyword = anyString(),
+                searchIn = anyString(),
+                sortBy = anyString(),
+                apiKey = anyString()
+            )
+        ).thenReturn(response)
+
+        val actual = newsRemoteDataSource.getNews(currentPage, perPage, keyword)
         assertEquals(newsLastList.size, actual.size)
     }
 }
