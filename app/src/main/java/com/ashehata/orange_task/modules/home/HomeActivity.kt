@@ -48,7 +48,8 @@ class HomeActivity : ComponentActivity() {
                     }
 
                     composable(HomeDestinations.NewsDetailsScreen().route) {
-                        val news = it.arguments?.parcelable<NewsUIModel>(HomeDestinations.NewsDetailsScreen().key)
+                        val news =
+                            it.arguments?.parcelable<NewsUIModel>(HomeDestinations.NewsDetailsScreen().key)
                         if (news != null) {
                             NewsDetailsScreen(newsUIModel = news, navController = navController)
                         }

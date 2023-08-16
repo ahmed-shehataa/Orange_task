@@ -40,6 +40,7 @@ import coil.request.ImageRequest
 import com.ashehata.orange_task.R
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 import com.ashehata.orange_task.util.extensions.DoIf
+import com.ashehata.orange_task.util.extensions.autoMirror
 import com.ashehata.orange_task.util.extensions.doIf
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,6 +89,7 @@ fun NewsDetailsScreenContent(
                 navigationIcon = {
                     IconButton(onClick = { onBackClicked() }) {
                         Icon(
+                            modifier = Modifier.autoMirror(),
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "ArrowBack"
                         )
