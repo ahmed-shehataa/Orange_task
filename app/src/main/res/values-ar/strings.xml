@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="no_news_found">No articles found</string>
+    <string name="no_news_found">لم يتم العثور على مقالات</string>
     <string name="network_error">خطأ في الانترنت</string>
     <string name="retry">حاول</string>
     <string name="news">الأخبار</string>
@@ -8,9 +8,12 @@
     <string name="settings">الأعدادات</string>
     <string name="language">اللغة</string>
     <string name="theme">الثيم</string>
-    <string name="author">Author</string>
-    <string name="description">Description</string>
-    <string name="content">Content</string>
-    <string name="source">Source</string>
-    <string name="open_source">Open source</string>
+    <string name="author">المؤلف</string>
+    <string name="description">الوصف</string>
+    <string name="content">المحتوى</string>
+    <string name="source">المصدر</string>
+    <string name="open_source">افتح المصدر</string>
+    <string name="system">النظام</string>
+    <string name="light">مضيئ</string>
+    <string name="dark">مظلم</string>
 </resources>

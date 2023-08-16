@@ -9,10 +9,13 @@ import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ashehata.orange_task.R
 import com.ashehata.orange_task.database.models.AppLocal
 
 @Composable
@@ -21,6 +24,16 @@ fun RadioLocalItem(
     currentAppLocal: AppLocal,
     onChangeLocal: (AppLocal) -> Unit
 ) {
+
+    val displayedName: () -> Int = remember(appLocal) {
+        {
+            when (appLocal) {
+                AppLocal.AR -> R.string.arabic
+                AppLocal.EN -> R.string.english
+            }
+        }
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -38,7 +51,7 @@ fun RadioLocalItem(
         )
 
         Text(
-            text = appLocal.name,
+            text = stringResource(id = displayedName()),
             color = MaterialTheme.colorScheme.primary,
             fontSize = 16.sp
         )
