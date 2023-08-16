@@ -5,21 +5,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ashehata.orange_task.R
 import com.ashehata.orange_task.database.models.AppLocal
-import com.ashehata.orange_task.modules.home.HomeActivity
-import com.ashehata.orange_task.util.extensions.restartActivity
 
 @Composable
 fun RadioLocalItem(
@@ -28,7 +26,6 @@ fun RadioLocalItem(
     onChangeLocal: (AppLocal) -> Unit
 ) {
 
-    val activity = LocalContext.current as? HomeActivity
     val displayedName: () -> Int = remember(appLocal) {
         {
             when (appLocal) {
@@ -44,7 +41,6 @@ fun RadioLocalItem(
             .clickable {
                 if (currentAppLocal != appLocal) {
                     onChangeLocal(appLocal)
-                    activity?.restartActivity()
                 }
             }
             .padding(horizontal = 40.dp, vertical = 12.dp),
@@ -55,11 +51,14 @@ fun RadioLocalItem(
         RadioButton(
             selected = appLocal == currentAppLocal,
             onClick = null,
+            colors = RadioButtonDefaults.colors(
+                selectedColor = MaterialTheme.colorScheme.secondary
+            )
         )
 
         Text(
             text = stringResource(id = displayedName()),
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.secondary,
             fontSize = 16.sp
         )
 

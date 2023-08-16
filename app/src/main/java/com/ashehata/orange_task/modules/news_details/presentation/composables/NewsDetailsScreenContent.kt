@@ -153,7 +153,7 @@ fun NewsDetailsScreenContent(
                                 description = it,
                                 hasDivider = false,
                                 extraBody = {
-                                    SourceButton(Modifier, news.url, onOpenSourceClicked)
+                                    SourceButton(Modifier.padding(end = 20.dp), news.url, onOpenSourceClicked)
                                 }
                             )
                         }

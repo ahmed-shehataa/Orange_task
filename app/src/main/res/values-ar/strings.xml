@@ -16,4 +16,8 @@
     <string name="system">النظام</string>
     <string name="light">مضيئ</string>
     <string name="dark">مظلم</string>
+    <string name="change_local">تغيير اللغة</string>
+    <string name="are_you_sure_to_change_local">هل أنت متأكد من تغيير اللغة؟</string>
+    <string name="sure">بالتأكيد</string>
+    <string name="cancel">إلغاء</string>
 </resources>

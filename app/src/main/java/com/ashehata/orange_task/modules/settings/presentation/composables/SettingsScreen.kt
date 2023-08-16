@@ -35,6 +35,10 @@ fun SettingsScreen(
         viewStates.appTheme
     }
 
+    val isLocalDialogVisible = remember {
+        viewStates.isLocalDialogVisible
+    }
+
     val appLocal = remember {
         viewStates.appLocal
     }
@@ -78,7 +82,8 @@ fun SettingsScreen(
         currentAppTheme = appTheme.value,
         onChangeTheme = onChangeTheme,
         onChangeLocal = onChangeLocal,
-        currentAppLocal = appLocal.value
+        currentAppLocal = appLocal.value,
+        localDialogState = isLocalDialogVisible
     )
 
 }
