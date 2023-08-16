@@ -13,4 +13,7 @@
     <string name="content">المحتوى</string>
     <string name="source">المصدر</string>
     <string name="open_source">افتح المصدر</string>
+    <string name="system">النظام</string>
+    <string name="light">مضيئ</string>
+    <string name="dark">مظلم</string>
 </resources>

@@ -15,4 +15,7 @@
     <string name="open_source">Open source</string>
     <string name="arabic" translatable="false">عربي</string>
     <string name="english" translatable="false">English</string>
+    <string name="system">System</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
 </resources>
