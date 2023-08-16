@@ -12,11 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ashehata.orange_task.R
 import com.ashehata.orange_task.database.models.AppLocal
+import com.ashehata.orange_task.modules.home.HomeActivity
+import com.ashehata.orange_task.util.extensions.restartActivity
 
 @Composable
 fun RadioLocalItem(
@@ -25,6 +28,7 @@ fun RadioLocalItem(
     onChangeLocal: (AppLocal) -> Unit
 ) {
 
+    val activity = LocalContext.current as? HomeActivity
     val displayedName: () -> Int = remember(appLocal) {
         {
             when (appLocal) {
@@ -38,7 +42,10 @@ fun RadioLocalItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                onChangeLocal(appLocal)
+                if (currentAppLocal != appLocal) {
+                    onChangeLocal(appLocal)
+                    activity?.restartActivity()
+                }
             }
             .padding(horizontal = 40.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,

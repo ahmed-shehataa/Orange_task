@@ -11,10 +11,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.ashehata.orange_task.R
+import com.ashehata.orange_task.util.extensions.autoMirror
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +37,7 @@ fun SettingsTopAppBar(onBackClicked: () -> Unit) {
                 onBackClicked()
             }) {
                 Icon(
+                    modifier = Modifier.autoMirror(),
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "ArrowBack",
                     tint = MaterialTheme.colorScheme.onSurface

@@ -1,18 +1,21 @@
 package com.ashehata.orange_task.theme
 
-import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import com.ashehata.orange_task.database.models.AppLocal
 import com.ashehata.orange_task.database.models.AppTheme
+import com.ashehata.orange_task.util.extensions.changeLocal
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import java.util.Locale
 
 
 private val LightColorScheme = lightColorScheme(
@@ -44,6 +47,7 @@ fun AppTheme(
             AppTheme.SYSTEM -> {
                 if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
             }
+
             AppTheme.LIGHT -> LightColorScheme
             AppTheme.DARK -> DarkColorScheme
         }
@@ -64,18 +68,17 @@ fun AppTheme(
                     context.changeLocal(appLocal)
                 }
 
-                content()
+                CompositionLocalProvider(
+                    LocalLayoutDirection provides when (appLocal) {
+                        AppLocal.AR -> LayoutDirection.Rtl
+                        AppLocal.EN -> LayoutDirection.Ltr
+                    }
+                ) {
+                    content()
+                }
+
             }
         )
     }
 
-}
-
-private fun Context.changeLocal(appLocal: AppLocal) {
-    val locale = Locale(appLocal.name)
-    Locale.setDefault(locale)
-    val resources = this.resources
-    val configuration = resources.configuration
-    configuration.locale = locale
-    resources.updateConfiguration(configuration, resources.displayMetrics)
 }

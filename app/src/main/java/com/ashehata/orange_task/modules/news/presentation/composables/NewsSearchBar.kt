@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ashehata.orange_task.R
+import com.ashehata.orange_task.util.extensions.autoMirror
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
@@ -62,6 +63,7 @@ fun NewsSearchBar(
         },
         leadingIcon = {
             Icon(
+                modifier = Modifier.autoMirror(),
                 imageVector = Icons.Filled.Search,
                 contentDescription = "Search",
             )
