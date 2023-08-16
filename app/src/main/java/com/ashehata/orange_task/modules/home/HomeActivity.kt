@@ -1,7 +1,6 @@
 package com.ashehata.orange_task.modules.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -17,7 +16,7 @@ import com.ashehata.orange_task.modules.settings.presentation.composables.Settin
 import com.ashehata.orange_task.modules.settings.presentation.contract.SettingsViewState
 import com.ashehata.orange_task.modules.settings.presentation.viewmodel.SettingsViewModel
 import com.ashehata.orange_task.theme.AppTheme
-import com.ashehata.orange_task.util.parcelable
+import com.ashehata.orange_task.util.extensions.parcelable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

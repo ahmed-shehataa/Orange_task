@@ -39,8 +39,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.ashehata.orange_task.R
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
-import com.ashehata.orange_task.util.DoIf
-import com.ashehata.orange_task.util.doIf
+import com.ashehata.orange_task.util.extensions.DoIf
+import com.ashehata.orange_task.util.extensions.doIf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
