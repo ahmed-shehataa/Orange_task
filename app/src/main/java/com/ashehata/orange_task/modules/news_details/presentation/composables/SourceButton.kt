@@ -10,7 +10,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.ashehata.orange_task.R
-import com.ashehata.orange_task.util.DoIf
+import com.ashehata.orange_task.util.extensions.DoIf
 
 @Composable
 fun SourceButton(modifier: Modifier, url: String?, onOpenSourceClicked: (String) -> Unit) {

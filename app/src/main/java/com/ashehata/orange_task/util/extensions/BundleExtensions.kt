@@ -1,4 +1,4 @@
-package com.ashehata.orange_task.util
+package com.ashehata.orange_task.util.extensions
 
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
