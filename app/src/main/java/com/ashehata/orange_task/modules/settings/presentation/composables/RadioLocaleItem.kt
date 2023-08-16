@@ -28,7 +28,6 @@ fun RadioLocalItem(
     onChangeLocal: (AppLocal) -> Unit
 ) {
 
-    val activity = LocalContext.current as? HomeActivity
     val displayedName: () -> Int = remember(appLocal) {
         {
             when (appLocal) {
@@ -44,7 +43,6 @@ fun RadioLocalItem(
             .clickable {
                 if (currentAppLocal != appLocal) {
                     onChangeLocal(appLocal)
-                    activity?.restartActivity()
                 }
             }
             .padding(horizontal = 40.dp, vertical = 12.dp),

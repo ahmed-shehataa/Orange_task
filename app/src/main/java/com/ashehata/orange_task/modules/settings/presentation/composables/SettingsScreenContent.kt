@@ -6,9 +6,13 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import com.ashehata.orange_task.R
+import com.ashehata.orange_task.common.presentation.compose.AlertDialog
 import com.ashehata.orange_task.database.models.AppLocal
 import com.ashehata.orange_task.database.models.AppTheme
+import com.ashehata.orange_task.modules.home.HomeActivity
+import com.ashehata.orange_task.util.extensions.restartActivity
 
 @Composable
 fun SettingsScreenContent(
@@ -21,7 +25,10 @@ fun SettingsScreenContent(
     currentAppLocal: AppLocal,
     onChangeTheme: (AppTheme) -> Unit,
     onChangeLocal: (AppLocal) -> Unit,
+    localDialogState: MutableState<Boolean>,
 ) {
+
+    val activity = LocalContext.current as? HomeActivity
 
     Scaffold(
         topBar = {
@@ -38,7 +45,9 @@ fun SettingsScreenContent(
                 expandedList = {
                     Column(Modifier.selectableGroup()) {
                         AppLocal.values().forEach {
-                            RadioLocalItem(it, currentAppLocal, onChangeLocal)
+                            RadioLocalItem(it, currentAppLocal) {
+                                localDialogState.value = true
+                            }
                         }
                     }
                 }
@@ -60,4 +69,20 @@ fun SettingsScreenContent(
         }
 
     }
+
+    AlertDialog(
+        state = localDialogState,
+        title = R.string.change_local,
+        content = R.string.are_you_sure_to_change_local,
+        positiveTitleRes = R.string.sure ,
+        negativeTitleRes = R.string.cancel,
+        positive = {
+            val local = when(currentAppLocal) {
+                AppLocal.AR -> AppLocal.EN
+                AppLocal.EN -> AppLocal.AR
+            }
+            onChangeLocal(local)
+            activity?.restartActivity()
+        }
+    )
 }
