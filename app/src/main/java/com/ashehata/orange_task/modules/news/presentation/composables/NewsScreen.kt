@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.ashehata.orange_task.common.presentation.GeneralObservers
+import com.ashehata.orange_task.modules.home.HomeDestinations
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsEvent
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsState
 import com.ashehata.orange_task.modules.news.presentation.contract.NewsViewState
@@ -33,20 +34,12 @@ fun NewsScreen(
     val allNews = (viewStates.newsFlow as Flow<PagingData<NewsUIModel>>).collectAsLazyPagingItems()
 
 
-    val isLoading = remember {
-        viewStates.isLoading
-    }
-
     val searchText = remember {
         viewStates.searchText
     }
 
     val isRefreshing = remember {
         viewStates.isRefreshing
-    }
-
-    val isNetworkError = remember {
-        viewStates.isNetworkError
     }
 
     val onArticleClicked: (NewsUIModel) -> Unit = remember {
@@ -74,9 +67,7 @@ fun NewsScreen(
     }
 
     NewsScreenContent(
-        isLoading = isLoading.value,
         isRefreshing = isRefreshing.value,
-        isNetworkError = isNetworkError.value,
         allNews = allNews,
         onArticleClicked = onArticleClicked,
         onRefresh = onRefresh,
@@ -88,13 +79,14 @@ fun NewsScreen(
     GeneralObservers<NewsState, NewsViewModel>(viewModel = viewModel) {
         when (it) {
             is NewsState.OpenArticleDetailsScreen -> {
-                navController.navigate(route = "news_details/news", args = Bundle().apply {
-                    putParcelable("news", it.news)
+                val destination = HomeDestinations.NewsDetailsScreen()
+                navController.navigate(route = destination.route, args = Bundle().apply {
+                    putParcelable(destination.key, it.news)
                 })
             }
 
             NewsState.OpenSettingScreen -> {
-                navController.navigate("settings")
+                navController.navigate(HomeDestinations.SettingsScreen.route)
             }
         }
     }

@@ -34,24 +34,22 @@ class HomeActivity : ComponentActivity() {
             val appLocal = remember { viewStates.appLocal }
 
             AppTheme(appTheme.value, appLocal.value) {
-                NavHost(navController = navController, startDestination = "news") {
+                NavHost(navController = navController, startDestination = HomeDestinations.NewsScreen.route) {
 
-                    composable("news") {
-                        Log.i("news: ", "news?.author.toString()")
-
+                    composable(HomeDestinations.NewsScreen.route) {
                         val viewModel: NewsViewModel by viewModels()
                         NewsScreen(viewModel = viewModel, navController = navController)
                     }
 
-                    composable("settings") {
+                    composable(HomeDestinations.SettingsScreen.route) {
                         SettingsScreen(
                             viewModel = settingsViewModel,
                             navController = navController
                         )
                     }
 
-                    composable("news_details/{news}") {
-                        val news = it.arguments?.parcelable<NewsUIModel>("news")
+                    composable(HomeDestinations.NewsDetailsScreen().route) {
+                        val news = it.arguments?.parcelable<NewsUIModel>(HomeDestinations.NewsDetailsScreen().key)
                         if (news != null) {
                             NewsDetailsScreen(newsUIModel = news, navController = navController)
                         }
