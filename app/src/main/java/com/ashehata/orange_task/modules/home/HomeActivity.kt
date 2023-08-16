@@ -1,7 +1,6 @@
 package com.ashehata.orange_task.modules.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -17,7 +16,7 @@ import com.ashehata.orange_task.modules.settings.presentation.composables.Settin
 import com.ashehata.orange_task.modules.settings.presentation.contract.SettingsViewState
 import com.ashehata.orange_task.modules.settings.presentation.viewmodel.SettingsViewModel
 import com.ashehata.orange_task.theme.AppTheme
-import com.ashehata.orange_task.util.parcelable
+import com.ashehata.orange_task.util.extensions.parcelable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,24 +33,22 @@ class HomeActivity : ComponentActivity() {
             val appLocal = remember { viewStates.appLocal }
 
             AppTheme(appTheme.value, appLocal.value) {
-                NavHost(navController = navController, startDestination = "news") {
+                NavHost(navController = navController, startDestination = HomeDestinations.NewsScreen.route) {
 
-                    composable("news") {
-                        Log.i("news: ", "news?.author.toString()")
-
+                    composable(HomeDestinations.NewsScreen.route) {
                         val viewModel: NewsViewModel by viewModels()
                         NewsScreen(viewModel = viewModel, navController = navController)
                     }
 
-                    composable("settings") {
+                    composable(HomeDestinations.SettingsScreen.route) {
                         SettingsScreen(
                             viewModel = settingsViewModel,
                             navController = navController
                         )
                     }
 
-                    composable("news_details/{news}") {
-                        val news = it.arguments?.parcelable<NewsUIModel>("news")
+                    composable(HomeDestinations.NewsDetailsScreen().route) {
+                        val news = it.arguments?.parcelable<NewsUIModel>(HomeDestinations.NewsDetailsScreen().key)
                         if (news != null) {
                             NewsDetailsScreen(newsUIModel = news, navController = navController)
                         }

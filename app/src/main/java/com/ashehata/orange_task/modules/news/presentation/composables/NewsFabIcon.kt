@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun NewsFabIcon(isScrollUpButtonVisible: Boolean, allListState: LazyListState) {
     val scope = rememberCoroutineScope()

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
-import com.ashehata.orange_task.util.openLink
+import com.ashehata.orange_task.util.extensions.openLink
 
 @Composable
 fun NewsDetailsScreen(newsUIModel: NewsUIModel, navController: NavHostController) {

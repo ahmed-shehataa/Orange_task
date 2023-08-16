@@ -10,7 +10,6 @@ import com.ashehata.orange_task.common.data.retrofit.Query.Companion.SEARCH_IN
 import com.ashehata.orange_task.common.data.retrofit.Query.Companion.SORTED_BY
 import com.ashehata.orange_task.common.data.retrofit.Query.Companion.TITLE
 import com.ashehata.orange_task.modules.news.data.retrofit.response.NewsResponse
-import com.ashehata.orange_task.util.Constants.API_KEY_VALUE
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -24,6 +23,6 @@ interface NewsService {
         @Query(KEYWORD) keyword: String,
         @Query(SEARCH_IN) searchIn: String = TITLE,
         @Query(SORTED_BY) sortBy: String = DATE,
-        @Query(API_KEY) apiKey: String = API_KEY_VALUE,
+        @Query(API_KEY) apiKey: String = API_KEY,
     ): NewsResponse
 }

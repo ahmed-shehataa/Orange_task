@@ -17,8 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
-import com.ashehata.orange_task.common.presentation.compose.LoadingView
-import com.ashehata.orange_task.common.presentation.compose.NetworkErrorView
 import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 
 
@@ -28,9 +26,7 @@ import com.ashehata.orange_task.modules.news.presentation.model.NewsUIModel
 @Composable
 fun NewsScreenContent(
     allNews: LazyPagingItems<NewsUIModel>?,
-    isLoading: Boolean,
     isRefreshing: Boolean,
-    isNetworkError: Boolean,
     onArticleClicked: (NewsUIModel) -> Unit,
     onRefresh: () -> Unit,
     onSettingsClicked: () -> Unit,
@@ -64,27 +60,18 @@ fun NewsScreenContent(
 
                 NewsSearchBar(searchText, onSearch)
 
-                if (isNetworkError) {
-                    NetworkErrorView(onRefresh)
+                Box(Modifier.pullRefresh(refreshState)) {
 
-                } else if (isLoading) {
-                    LoadingView()
+                    AllNewsList(
+                        allListState, allNews, onArticleClicked
+                    )
 
-                } else {
+                    PullRefreshIndicator(
+                        isRefreshing,
+                        refreshState,
+                        Modifier.align(Alignment.TopCenter)
+                    )
 
-                    Box(Modifier.pullRefresh(refreshState)) {
-
-                        AllNewsList(
-                            allListState, allNews, onArticleClicked
-                        )
-
-                        PullRefreshIndicator(
-                            isRefreshing,
-                            refreshState,
-                            Modifier.align(Alignment.TopCenter)
-                        )
-
-                    }
 
                 }
             }

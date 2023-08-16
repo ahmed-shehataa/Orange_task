@@ -1,4 +1,4 @@
-package com.ashehata.orange_task.util
+package com.ashehata.orange_task.util.extensions
 
 import android.content.Context
 import android.content.Intent
