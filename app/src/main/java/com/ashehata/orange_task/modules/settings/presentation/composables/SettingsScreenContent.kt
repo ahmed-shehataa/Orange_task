@@ -1,7 +1,9 @@
 package com.ashehata.orange_task.modules.settings.presentation.composables
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -34,9 +36,10 @@ fun SettingsScreenContent(
         topBar = {
             SettingsTopAppBar(onBackClicked)
         },
+        backgroundColor = MaterialTheme.colorScheme.onPrimary
     ) { _ ->
 
-        Column {
+        Column(Modifier.fillMaxSize()) {
             SettingsItem(
                 titleRes = R.string.language,
                 iconRes = R.drawable.ic_local,
