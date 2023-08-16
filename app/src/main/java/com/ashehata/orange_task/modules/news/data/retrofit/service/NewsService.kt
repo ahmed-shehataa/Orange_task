@@ -1,5 +1,6 @@
 package com.ashehata.orange_task.modules.news.data.retrofit.service
 
+import com.ashehata.orange_task.BuildConfig.API_KEY_VALUE
 import com.ashehata.orange_task.common.data.retrofit.ApiPaths
 import com.ashehata.orange_task.common.data.retrofit.Query.Companion.API_KEY
 import com.ashehata.orange_task.common.data.retrofit.Query.Companion.DATE
@@ -23,6 +24,6 @@ interface NewsService {
         @Query(KEYWORD) keyword: String,
         @Query(SEARCH_IN) searchIn: String = TITLE,
         @Query(SORTED_BY) sortBy: String = DATE,
-        @Query(API_KEY) apiKey: String = API_KEY,
+        @Query(API_KEY) apiKey: String = API_KEY_VALUE,
     ): NewsResponse
 }
