@@ -115,4 +115,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.mockito.kotlin:mockito-kotlin:5.0.0"
     //endregion
+
+
+    //region Localization
+    implementation ('com.akexorcist:localization:1.2.11') {
+        exclude group: 'androidx.core', module: 'core'
+    }
+    //endregion
+
 }
