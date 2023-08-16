@@ -3,9 +3,9 @@ package com.ashehata.orange_task.di.modules
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.ashehata.orange_task.BuildConfig.BASE_URL
 import com.ashehata.orange_task.database.datastore.AppDataStore
 import com.ashehata.orange_task.database.room.AppDatabase
-import com.ashehata.orange_task.util.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
