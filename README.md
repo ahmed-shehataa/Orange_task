@@ -10,7 +10,7 @@ A task with two screens (news list, news details). When the user selects a row i
   <img src="img/5.png" height="450" width="220">
 </p>
 
-## Demo
+## Demo (GIF)
 <p>
   <img src="img/demo.gif" height="500" width="250">
 </p>
@@ -18,18 +18,6 @@ A task with two screens (news list, news details). When the user selects a row i
 
 ## APK Download
 [Click here](https://drive.google.com/file/d/1hH8VLKvclu9qMgSkXoNI3Q3oi1u9RIdf/view?usp=sharing)
-
-
-## App-Arch
-<p>
-  <img src="img/app_arch.png" height="250" width="350">
-</p>
-
-- base: contains base code
-- common: contains common classes that may used at many places like (composable fun)
-- database: room and datastore
-- modules: contains app features (login - recipes - user ..etc)
-- util: for utility classes
 
 ## In-App architecture
 <p>
