@@ -43,6 +43,7 @@ A task with two screens (news list, news details). When the user selects a row i
 
 
 ## Features
+- Material 3 support
 - Caching
 - Dark mode support
 - Obfuscation
