@@ -12,13 +12,16 @@ import javax.inject.Inject
 class NewsPagingFlow @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase
 ) {
-    fun getNewsFlow(keyword: String): Flow<PagingData<NewsUIModel>> {
+    fun getNewsFlow(
+        keyword: String,
+        pageSize: Int = PAGE_SIZE
+    ): Flow<PagingData<NewsUIModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = PAGE_SIZE,
             ),
             pagingSourceFactory = {
-                NewsPagingSource(getNewsUseCase, keyword)
+                NewsPagingSource(getNewsUseCase, keyword, pageSize)
             },
         ).flow
     }

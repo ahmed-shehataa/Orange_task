@@ -13,17 +13,17 @@ data class NewsDataModel(
     @Json(name = "url")
     val url: String,
     @Json(name = "author")
-    val author: String?,
+    val author: String? = null,
     @Json(name = "content")
-    val content: String?,
+    val content: String? = null,
     @Json(name = "description")
-    val description: String?,
+    val description: String? = null,
     @Json(name = "publishedAt")
-    val publishedAt: String?,
+    val publishedAt: String? = null,
     @Json(name = "source")
-    val source: SourceDataModel?,
+    val source: SourceDataModel? = null,
     @Json(name = "title")
-    val title: String?,
+    val title: String? = null,
     @Json(name = "urlToImage")
-    val urlToImage: String?
+    val urlToImage: String? = null,
 )
