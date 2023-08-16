@@ -93,4 +93,9 @@ dependencies {
     //region datastore
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
     //endregion
+
+    //region test
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito.kotlin:mockito-kotlin:5.0.0"
+    //endregion
 }
