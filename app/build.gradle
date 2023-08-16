@@ -41,6 +41,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.3.2'
     }
+    // That will decide whether un-mocked methods from android.jar should throw exceptions or return default values.
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {

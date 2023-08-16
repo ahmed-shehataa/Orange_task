@@ -12,7 +12,7 @@ class GetNewsUseCase @Inject constructor(
 
     suspend fun execute(
         page: Int = 1,
-        perPage: Int = Constants.PAGE_SIZE,
+        perPage: Int,
         keyword: String,
     ): List<NewsDomainModel> {
         return repository.getNews(page, perPage, keyword)
